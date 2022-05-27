@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "OG.OrderManager.Application.Common.Protos";
+
+package order;
+
+service Order {
+	rpc GetOrdersByCustomer (GetOrdersByCustomerRequest) returns (OrdersDTO);
+	rpc AddOrder (OrderDTO) returns (TransactionOrderResponse);
+	rpc UpdateOrder (OrderDTO) returns (TransactionOrderResponse);
+	rpc DeleteOrder (DeleteOrderRequest) returns (TransactionOrderResponse);
+}
+
+message OrderDTO {
+	int32 Id = 1;
+	int32 CustomerId = 2;
+	string Description = 3;
+	double Amount = 4;
+}
+
+message OrdersDTO {
+	repeated OrderDTO Orders = 1;
+}
+
+message GetOrdersByCustomerRequest {
+	int32 CustomerId = 1;
+}
+
+message DeleteOrderRequest {
+	int32 Id = 1;
+}
+
+message TransactionOrderResponse {
+	int32 OrderId = 1;
+}

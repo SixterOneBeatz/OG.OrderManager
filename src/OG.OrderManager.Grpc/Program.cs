@@ -19,7 +19,7 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAll", bldr =>
 }));
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

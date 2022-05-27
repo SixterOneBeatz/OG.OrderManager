@@ -14,12 +14,12 @@ namespace OG.OrderManager.Application.Greet.Commands
 
     public class SayHelloCommandHandler : IRequestHandler<SayHelloCommand, HelloReply>
     {
-        private readonly IGreetRepository _greetRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SayHelloCommandHandler(IGreetRepository greetRepository)
-            => _greetRepository = greetRepository;
+        public SayHelloCommandHandler(IUnitOfWork unitOfWork)
+            => _unitOfWork = unitOfWork;
 
         public Task<HelloReply> Handle(SayHelloCommand request, CancellationToken cancellationToken)
-            => _greetRepository.SayHello(request.HelloRequest);
+            => _unitOfWork.GreetRepository.SayHello(request.HelloRequest);
     }
 }

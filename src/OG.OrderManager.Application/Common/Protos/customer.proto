@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "OG.OrderManager.Application.Common.Protos";
+
+package customer;
+
+service Customer {
+  rpc GetCustomers (google.protobuf.Empty) returns (CustomersDTO);
+  rpc GetCustomer (CustomerRequest) returns (CustomerDTO);
+  rpc AddCustomer (CustomerDTO) returns (TransactionCustomerResponse);
+  rpc UpdateCustomer (CustomerDTO) returns (TransactionCustomerResponse);
+  rpc DeleteCustomer (CustomerRequest) returns (TransactionCustomerResponse);
+}
+
+message CustomerDTO {
+	int32 Id = 1;
+	string Name = 2;
+	string LastName = 3;
+	string RFC = 4;
+}
+
+message CustomersDTO {
+	repeated CustomerDTO Customers = 1;
+}
+
+message CustomerRequest {
+	int32 Id = 1;	
+}
+
+message TransactionCustomerResponse {
+	int32 Id = 1;
+}
+

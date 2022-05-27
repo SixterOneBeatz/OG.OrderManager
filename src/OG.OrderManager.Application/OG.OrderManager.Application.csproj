@@ -7,17 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Common\Protos\customer.proto" />
     <None Remove="Common\Protos\greet.proto" />
+    <None Remove="Common\Protos\order.proto" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="Common\Protos\customer.proto" GrpcServices="Server" />
     <Protobuf Include="Common\Protos\greet.proto" GrpcServices="Server" />
+    <Protobuf Include="Common\Protos\order.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OG.OrderManager.Domain\OG.OrderManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>
