@@ -1,4 +1,5 @@
 using OG.OrderManager.Application;
+using OG.OrderManager.Grpc;
 using OG.OrderManager.Grpc.Services;
 using OG.OrderManager.Infrastructure;
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
 
 // Add services to the container.
+builder.Services.Configure<GlobalSettings>(builder.Configuration.GetSection("GlobalSettings"));
+
 builder.Services.AddGrpc();
 builder.Services.AddCors(o => o.AddPolicy("AllowAll", bldr =>
 {
@@ -27,9 +30,16 @@ var app = builder.Build();
 app.UseRouting();
 app.UseGrpcWeb(new() { DefaultEnabled = true });
 app.UseCors();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<GreeterService>()
+             .EnableGrpcWeb()
+             .RequireCors("AllowAll");
+    endpoints.MapGrpcService<CustomerService>()
+             .EnableGrpcWeb()
+             .RequireCors("AllowAll");
+    endpoints.MapGrpcService<OrderService>()
              .EnableGrpcWeb()
              .RequireCors("AllowAll");
 });

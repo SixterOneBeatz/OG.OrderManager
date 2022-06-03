@@ -2,11 +2,6 @@
 using OG.OrderManager.Application.Common.Interfaces;
 using OG.OrderManager.Domain;
 using OG.OrderManager.Infrastructure.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OG.OrderManager.Infrastructure.Repositories
 {
@@ -20,12 +15,12 @@ namespace OG.OrderManager.Infrastructure.Repositories
         public void AddOrder(Order order)
             => _context.Orders.Add(order);
 
-        
+
         public void DeleteOrder(Order order)
             => _context.Orders.Remove(order);
 
         public async Task<Order> GetOrder(int id)
-            => await  _context.Orders.FindAsync(id);
+            => await _context.Orders.FindAsync(id);
 
         public async Task<IEnumerable<Order>> GetOrdersByCustomer(int customerId)
             => await _context.Orders.ToListAsync();

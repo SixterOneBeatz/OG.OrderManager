@@ -1,0 +1,40 @@
+﻿@using OG.OrderManager.Application.Common.Protos
+<MudTable Items="@Customers" Dense="true" Hover="true" Bordered="true" Striped="true" Filter="new Func<CustomerDTO,bool>(CustomerFilterFunc)" @bind-SelectedItem="CurrentCustomer">
+    <ToolBarContent>
+        <MudFab EndIcon="@Icons.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Medium" Label="Add Customer" />
+        <MudSpacer />
+        <MudTextField @bind-Value="searchQuery" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <ColGroup>
+        <col style="width:10%; text-align:center;" />
+        <col style="width:35%" />
+        <col style="width:40%" />
+        <col style="width:15%; text-align:center;" />
+    </ColGroup>
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Last Name</MudTh>
+        <MudTh>Actions</MudTh>
+
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Last Name">@context.LastName</MudTd>
+        <MudTd DataLabel="Actions">
+            <MudTooltip Text="Edit">
+                <MudIconButton Size="Size.Small" Icon="@Icons.Filled.Edit" Color="Color.Primary" />
+            </MudTooltip>
+            <MudTooltip Text="Delete">
+                <MudIconButton Size="Size.Small" Icon="@Icons.Filled.Delete" Color="Color.Error" />
+            </MudTooltip>
+            <MudTooltip Text="View Orders">
+                <MudIconButton Size="Size.Small" Icon="@Icons.Filled.FormatListBulleted" Color="Color.Dark" />
+            </MudTooltip>
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>

@@ -12,7 +12,7 @@ namespace OG.OrderManager.Application.Order.Queries
 
         public GetOrdersByCustomerQuery(int customerId)
             => CustomerId = customerId;
-        
+
     }
 
     public class GetOrdersByCustomerQueryHandler : IRequestHandler<GetOrdersByCustomerQuery, OrdersDTO>

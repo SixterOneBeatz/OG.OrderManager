@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OG.OrderManager.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OG.OrderManager.Infrastructure", "src\OG.OrderManager.Infrastructure\OG.OrderManager.Infrastructure.csproj", "{0B5B1ACA-6FB5-4422-A159-56694DA8819D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OG.OrderManager.Domain", "src\OG.OrderManager.Domain\OG.OrderManager.Domain.csproj", "{0B2745D8-72AA-4830-8EB4-212DC3A8C65E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OG.OrderManager.Domain", "src\OG.OrderManager.Domain\OG.OrderManager.Domain.csproj", "{0B2745D8-72AA-4830-8EB4-212DC3A8C65E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

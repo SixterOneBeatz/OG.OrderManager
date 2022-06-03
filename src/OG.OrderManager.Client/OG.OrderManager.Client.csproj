@@ -16,11 +16,18 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.4" PrivateAssets="all" />
+    <PackageReference Include="MudBlazor" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="..\OG.OrderManager.Application\Common\Protos\customer.proto" GrpcServices="Client">
+      <Link>Protos\customer.proto</Link>
+    </Protobuf>
     <Protobuf Include="..\OG.OrderManager.Application\Common\Protos\greet.proto" GrpcServices="Client">
       <Link>Protos\greet.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\OG.OrderManager.Application\Common\Protos\order.proto" GrpcServices="Client">
+      <Link>Protos\order.proto</Link>
     </Protobuf>
   </ItemGroup>
 

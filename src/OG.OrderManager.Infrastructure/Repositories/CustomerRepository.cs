@@ -2,11 +2,6 @@
 using OG.OrderManager.Application.Common.Interfaces;
 using OG.OrderManager.Domain;
 using OG.OrderManager.Infrastructure.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OG.OrderManager.Infrastructure.Repositories
 {

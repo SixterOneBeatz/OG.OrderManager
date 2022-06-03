@@ -4,8 +4,6 @@ namespace OG.OrderManager.Client.Pages
 {
     public partial class GrpcExample
     {
-        //[Inject] public GrpcClient.Greeter.GreeterClient GreeterClient { get; set; }
-
         [Inject] public IGreeterService _greeterService { get; set; }
 
         private string name = string.Empty;
@@ -22,5 +20,6 @@ namespace OG.OrderManager.Client.Pages
                 name = ex.Message;
             }
         }
+
     }
 }
