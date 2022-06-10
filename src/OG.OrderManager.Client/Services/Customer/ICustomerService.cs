@@ -6,8 +6,8 @@ namespace OG.OrderManager.Client.Services.Customer
     {
         Task<CustomerDTO> GetCustomer(int id);
         Task<CustomersDTO> GetCustomers();
-        Task AddCustomer(CustomerDTO customerDTO);
-        Task UpdateCustomer(CustomerDTO customerDTO);
-        Task DeleteCustomer(int id);
+        Task<TransactionCustomerResponse> AddCustomer(CustomerDTO customerDTO);
+        Task<TransactionCustomerResponse> UpdateCustomer(CustomerDTO customerDTO);
+        Task<TransactionCustomerResponse> DeleteCustomer(int id);
     }
 }

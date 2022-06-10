@@ -28,7 +28,7 @@ namespace OG.OrderManager.Application.Order.Queries
 
         public async Task<OrdersDTO> Handle(GetOrdersByCustomerQuery request, CancellationToken cancellationToken)
         {
-            var customer = _unitOfWork.CustomerRepository.GetCustomer(request.CustomerId);
+            var customer = await _unitOfWork.CustomerRepository.GetCustomer(request.CustomerId);
 
             if (customer is null)
                 throw new ApplicationException("Customer not found");

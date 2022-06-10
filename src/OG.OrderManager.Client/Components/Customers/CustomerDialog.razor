@@ -1,5 +1,25 @@
-﻿<h3>CustomerDialog</h3>
-
-@code {
-
-}
+﻿@using OG.OrderManager.Application.Common.Protos
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="Customer">
+            <MudGrid>
+                <MudItem>
+                    <MudTextField Disabled="IsDelete" Label="Name" @bind-Value="Customer.Name" />
+                    <MudTextField Disabled="IsDelete" Label="Last Name" @bind-Value="Customer.LastName" />
+                    <MudTextField Disabled="IsDelete" Label="RFC" @bind-Value="Customer.RFC" />
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        @if (IsDelete)
+        {
+            <MudButton Color="Color.Error" OnClick="() => Delete()">Delete</MudButton>
+        }
+        else
+        {
+            <MudButton Color="Color.Primary" OnClick="() => Submit()">Save</MudButton>
+        }
+    </DialogActions>
+</MudDialog>

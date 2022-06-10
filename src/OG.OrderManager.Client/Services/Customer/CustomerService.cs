@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using OG.OrderManager.Application.Common.Protos;
 using ApplicationProtos = OG.OrderManager.Application.Common.Protos;
 
 namespace OG.OrderManager.Client.Services.Customer
@@ -8,31 +9,21 @@ namespace OG.OrderManager.Client.Services.Customer
         private readonly ApplicationProtos.Customer.CustomerClient _customerClient;
 
         public CustomerService(IServiceProvider serviceProvider)
-        {
-            _customerClient = serviceProvider.GetRequiredService<ApplicationProtos.Customer.CustomerClient>();
-        }
+            => _customerClient = serviceProvider.GetRequiredService<ApplicationProtos.Customer.CustomerClient>();
 
-        public Task AddCustomer(ApplicationProtos.CustomerDTO customerDTO)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TransactionCustomerResponse> AddCustomer(CustomerDTO customerDTO)
+            => await _customerClient.AddCustomerAsync(customerDTO);
 
-        public Task DeleteCustomer(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TransactionCustomerResponse> DeleteCustomer(int id)
+            => await _customerClient.DeleteCustomerAsync(new CustomerRequest() { Id = id});
 
-        public Task<ApplicationProtos.CustomerDTO> GetCustomer(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<CustomerDTO> GetCustomer(int id)
+            => await _customerClient.GetCustomerAsync(new CustomerRequest() { Id = id });
 
-        public async Task<ApplicationProtos.CustomersDTO> GetCustomers()
+        public async Task<CustomersDTO> GetCustomers()
             => await _customerClient.GetCustomersAsync(new Empty());
 
-        public Task UpdateCustomer(ApplicationProtos.CustomerDTO customerDTO)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TransactionCustomerResponse> UpdateCustomer(CustomerDTO customerDTO)
+            => await _customerClient.UpdateCustomerAsync(customerDTO);
     }
 }

@@ -1,5 +1,81 @@
-﻿<h3>OrdersTable</h3>
+﻿@using OG.OrderManager.Application.Common.Protos
 
-@code {
-
-}
+<MudDialog>
+    <DialogContent>
+        <MudTable Items="@Orders"
+                  Dense="true"
+                  Hover="true"
+                  Bordered="true"
+                  Striped="true"
+                  Filter="new Func<OrderDTO,bool>(OrderFilterFunc)"
+                  @bind-SelectedItem="CurrentOrder"
+                  Style="overflow: auto; width: 100%;"
+                  FixedHeader="true"
+                  FixedFooter="true"
+                  Height="50vh">
+            <ToolBarContent>
+                <MudFab EndIcon="@Icons.Filled.Add" Variant="Variant.Filled"
+                        Color="Color.Primary" Size="Size.Small"
+                        Label="Add Order"
+                        OnClick="AddRow" />
+                <MudSpacer />
+                <MudTextField @bind-Value="searchQuery"
+                              Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search"
+                              IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <ColGroup>
+                <col style="width:15%; text-align:center;" />
+                <col style="width:40%" />
+                <col style="width:30%; text-align:center;" />
+                <col style="width:15%; text-align:center;" />
+            </ColGroup>
+            <HeaderContent>
+                <MudTh>#Order</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>Amount</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Id">@context.Id</MudTd>
+                <MudTd DataLabel="Description">
+                    @if (context.Id == 0)
+                    {
+                        <MudTextField Label="Description"
+                                  @bind-Value="context.Description"
+                                  Variant="Variant.Outlined"
+                                  Required="true"
+                                  Margin="Margin.Dense"
+                                  Immediate="true" />
+                    }
+                    else
+                    {
+                        @context.Description
+                    }
+                </MudTd>
+                <MudTd DataLabel="Amount">
+                    <MudTextField Label="Amount $$$"
+                                  @bind-Value="context.Amount"
+                                  AdornmentIcon="@Icons.Material.Filled.AttachMoney"
+                                  Variant="Variant.Outlined" Required="true"
+                                  Margin="Margin.Dense"
+                                  Immediate="true" />
+                </MudTd>
+                <MudTd DataLabel="Actions">
+                    <MudTooltip Text="Save">
+                        <MudIconButton Size="Size.Small" Icon="@Icons.Filled.Save" Color="Color.Success" OnClick="() => SubmitOrder(context)" />
+                    </MudTooltip>
+                    <MudTooltip Text="Delete">
+                        <MudIconButton Size="Size.Small" Icon="@Icons.Filled.Delete" Color="Color.Error" OnClick="() => DeleteOrder(context)" />
+                    </MudTooltip>
+                </MudTd>
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+        </MudTable>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close">Close</MudButton>
+    </DialogActions>
+</MudDialog>
